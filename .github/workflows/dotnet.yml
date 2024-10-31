@@ -27,20 +27,20 @@ jobs:
 
       # Восстанавливаем зависимости для основного проекта
       - name: Restore dependencies for main project
-        run: dotnet restore ./PROJECT_PATH
+        run: dotnet restore D:/1LABS/BD/Lab_5/CityEvents/WebCityEvents
 
       # Восстанавливаем зависимости для тестового проекта
       - name: Restore dependencies for test project
-        run: dotnet restore ./TEST_PROJECT_PATH
+        run: dotnet restore D:/1LABS/BD/Lab_5/CityEvents/WebCityEvents.Tests
 
       # Сборка основного проекта
       - name: Build main project
-        run: dotnet build ./PROJECT_PATH --no-restore
+        run: dotnet build D:/1LABS/BD/Lab_5/CityEvents/WebCityEvents --no-restore
 
       # Сборка тестового проекта
       - name: Build test project
-        run: dotnet build ./TEST_PROJECT_PATH --no-restore
+        run: dotnet build D:/1LABS/BD/Lab_5/CityEvents/WebCityEvents.Tests --no-restore
 
       # Запуск тестов
       - name: Test
-        run: dotnet test ./TEST_PROJECT_PATH --no-restore --verbosity normal
+        run: dotnet test D:/1LABS/BD/Lab_5/CityEvents/WebCityEvents.Tests --no-restore --verbosity normal
