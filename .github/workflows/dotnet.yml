@@ -15,21 +15,32 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         dotnet-version: ['8.x']
-    
+        
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
 
-    - name: Restore dependencies
-      run: dotnet restore
+      # Восстанавливаем зависимости для основного проекта
+      - name: Restore dependencies for main project
+        run: dotnet restore ./PROJECT_PATH
 
-    - name: Build
-      run: dotnet build --no-restore
+      # Восстанавливаем зависимости для тестового проекта
+      - name: Restore dependencies for test project
+        run: dotnet restore ./TEST_PROJECT_PATH
 
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      # Сборка основного проекта
+      - name: Build main project
+        run: dotnet build ./PROJECT_PATH --no-restore
+
+      # Сборка тестового проекта
+      - name: Build test project
+        run: dotnet build ./TEST_PROJECT_PATH --no-restore
+
+      # Запуск тестов
+      - name: Test
+        run: dotnet test ./TEST_PROJECT_PATH --no-restore --verbosity normal
