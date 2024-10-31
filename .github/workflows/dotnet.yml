@@ -27,20 +27,20 @@ jobs:
 
       # Восстанавливаем зависимости для основного проекта
       - name: Restore dependencies for main project
-        run: dotnet restore CityEvents/WebCityEvents/WebCityEvents.csproj
+        run: dotnet restore WebCityEvents/WebCityEvents.csproj
 
       # Восстанавливаем зависимости для тестового проекта
       - name: Restore dependencies for test project
-        run: dotnet restore CityEvents/WebCityEvents.Tests/WebCityEvents.Tests.csproj
+        run: dotnet restore WebCityEvents.Tests/WebCityEvents.Tests.csproj
 
       # Сборка основного проекта
       - name: Build main project
-        run: dotnet build CityEvents/WebCityEvents/WebCityEvents.csproj --no-restore
+        run: dotnet build WebCityEvents/WebCityEvents.csproj --no-restore
 
       # Сборка тестового проекта
       - name: Build test project
-        run: dotnet build CityEvents/WebCityEvents.Tests/WebCityEvents.Tests.csproj --no-restore
+        run: dotnet build WebCityEvents.Tests/WebCityEvents.Tests.csproj --no-restore
 
       # Запуск тестов
       - name: Test
-        run: dotnet test CityEvents/WebCityEvents.Tests/WebCityEvents.Tests.csproj --no-restore --verbosity normal
+        run: dotnet test WebCityEvents.Tests/WebCityEvents.Tests.csproj --no-restore --verbosity normal
